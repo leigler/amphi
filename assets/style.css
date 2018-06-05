@@ -1,0 +1,22 @@
+html{
+	background-color: black;
+}
+
+body{
+	background-color: transparent;
+}
+
+body, html{
+	padding: 0;
+	margin: 0;
+	font-size: 15px;
+	font-family: Times New Roman;
+	width: 100vw;
+	min-height: 100vh;
+	overflow-x: hidden;
+	color: yellow;
+}
+
+div{
+	font-size: 2rem;
+}
