@@ -1,26 +1,22 @@
 var html = require('choo/html')
-var subblock = require('./subblock.js')
 
 //export module
 module.exports = function(state, emit){
-
 	console.log(state)
 
 	if(state.class == "Channel"){
 
+		var subChannel = ["https://api.are.na/v2/channels/" + state.slug];
+
 		return html`
 
 		<div>
-			<h1>${state.title}</h1>
-
-			${state.contents.map(subblock)}
-
+			<h1><a href='/${state.slug}'>${state.title}</a></h1>
 		</div>
 
 		`
 
 	}else if(state.class == "Link"){
-
 		return html`
 
 			<div class="link">
@@ -30,7 +26,6 @@ module.exports = function(state, emit){
 		`
 
 	}else if(state.class == "Attachment"){
-
 		return html`
 
 			<div class="link">
@@ -40,14 +35,13 @@ module.exports = function(state, emit){
 		`
 
 	}else if(state.class == "Text"){
-
 		return html`
 
-		<div>
-			<h1>${state.title}</h1>
-			${state.content}
+			<div>
+				<h1>${state.title}</h1>
+				${state.content}
 
-		</div>
+			</div>
 
 		`
 
@@ -61,5 +55,4 @@ module.exports = function(state, emit){
 
 		`
 	}
-
 }
