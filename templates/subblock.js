@@ -1,26 +1,47 @@
 var html = require('choo/html')
-var subblock = require('./block.js')
+var rawhtml = require('choo/html/raw')
+var subsection = require('./subsection.js')
+var marked = require('marked')
 
 //export module
 module.exports = function(state, emit){
+	//console.log(state)
 
-	console.log(state)
+	var titleInfo = ""
+
+	if(state.title){
+		titleInfo = state.title.substring(
+		    state.title.lastIndexOf("[") + 1, 
+		    state.title.lastIndexOf("]")
+		);
+
+		if(titleInfo.length > 0){
+			titleInfo = titleInfo.split(" ")
+		}
+	}
 
 	if(state.class == "Channel"){
+		// if its a subsection, it should output the subchannel's info as well...
+		if(titleInfo.length > 0){
+			if(titleInfo.includes("subsection")){
 
-		return html`
+				// if its  a subsection
+				// use slug for api search
 
-		<div>
-			<h1>${state.title}</h1>
+				var channeltitle = state.title.replace('[subsection]','');
 
-			${state.contents.map(subblock)}
+				//console.log(state.contents)
 
-		</div>
-
-		`
-
+				return html`
+					<div>
+						<h1>${channeltitle}</h1>
+						${state.contents.map(subsection)}
+					</div>
+				`
+			}
+		}
 	}else if(state.class == "Link"){
-
+		// links can be inline or new line
 		return html`
 
 			<div class="link">
@@ -30,7 +51,7 @@ module.exports = function(state, emit){
 		`
 
 	}else if(state.class == "Attachment"){
-
+		// links can be inline or new line
 		return html`
 
 			<div class="link">
@@ -40,26 +61,20 @@ module.exports = function(state, emit){
 		`
 
 	}else if(state.class == "Text"){
+		// each paragraph, title included is optional
+		
+		var textContent = marked(state.content, {sanitize : true})
 
 		return html`
-
-		<div>
-			<h1>${state.title}</h1>
-			${state.content}
-
-		</div>
-
-		`
-
-	}else{
-		return html`
-
 			<div>
-				<h1>${state.title}</h1>
-
+			${rawhtml(textContent)}
 			</div>
+			`
+		
 
+	}else if(state.class = "Image"){
+		return html`
+				<img class="image" src="${state.image.original.url}">
 		`
 	}
-
 }
