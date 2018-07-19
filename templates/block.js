@@ -30,12 +30,10 @@ module.exports = function(state, emit){
 
 				var channeltitle = state.title.replace('[subsection]','');
 
-				//console.log(state.contents)
-
 				return html`
 					<div>
 						<h1>${channeltitle}</h1>
-						${state.contents.map(subsection)}
+						${state.contents.map(module.exports)}
 					</div>
 				`
 			}

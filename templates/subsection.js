@@ -7,10 +7,12 @@ var marked = require('marked')
 //export module
 module.exports = function(state, emit){
 
-	var contents = [state]
-	//console.log("CONTENTS", contents)
+	if(state.isArray){
+		var contents = state
+	}else{
+		var contents = [state]
+	}
 
-	
 	// might need to just make a block mirror for this
 //${contents.map(block)}
 	return html`
