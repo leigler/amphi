@@ -1,24 +1,21 @@
 html{
-	background-color: black;
+	background-color: white;
 }
 
 body{
 	background-color: transparent;
+	letter-spacing: 0.05rem;
 }
 
 body, html{
 	padding: 0;
 	margin: 0;
 	font-size: 15px;
-	font-family: Times New Roman;
+	font-family: Arial;
 	width: 100vw;
 	min-height: 100vh;
 	overflow-x: hidden;
-	color: yellow;
-}
-
-div{
-	font-size: 2rem;
+	color: black;
 }
 
 h1, h2, h3, h4, h5, h6, p, ul{
@@ -27,42 +24,59 @@ h1, h2, h3, h4, h5, h6, p, ul{
 	width: 80vw;
 	margin: 0 auto;
 	font-weight: normal;
+	font-size: 2rem; 
+
 }
 
+a{
+	color: red;
+	text-decoration: none;
+}
+
+a:hover{
+	color:black;
+}
+
+
+.header{
+	position: fixed;
+	display: block;
+	z-index: 100;
+	top:0px;
+	left: 0px;
+	height: auto;
+	width: 100vw;
+	background: transparent;
+	font-size: 0px;
+}
+
+.title{
+	position: relative;
+	width: 50vw;
+	display: inline-block;
+	text-align: left;
+	font-size: 2rem;
+	vertical-align: top;
+	box-sizing: border-box;
+	padding: 1rem;
+}
 
 .menu{
-	position: fixed;
-	top: 0px;
+	position: relative;
+	box-sizing: border-box;
+	padding: 1rem;
+	display: inline-block;
+	width: 50vw;
+	bottom: 0px;
 	right: 0px;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	background: white;
-	font-size: 1rem;
-	z-index: 100;
+	vertical-align: top;
+	font-size: 2rem;
+	text-align: right;
 	text-decoration: none;
-	height: 100vh;
-	opacity: 0.4;
-	transform: translateX(50%);
-	transition: transform 0.5s, opacity 0.5s;
 }
-
-.menu:hover{
-	transform: translateX(0%);	
-	opacity: 1;
-}
-
-
 
 .menu > h1{
 	width: auto;
-}
-
-.menu > h1 > a{
-	text-decoration: none;	
-	color: blue;
-}
-.menu > h1 > a:hover{
-	color: red;
 }
 
 

@@ -1,6 +1,6 @@
 var html = require('choo/html')
 var rawhtml = require('choo/html/raw')
-var subsection = require('./subsection.js')
+//var subsection = require('./subsection.js')
 var marked = require('marked')
 
 //export module
@@ -24,18 +24,22 @@ module.exports = function(state, emit){
 		// if its a subsection, it should output the subchannel's info as well...
 		if(titleInfo.length > 0){
 			if(titleInfo.includes("subsection")){
-
 				// if its  a subsection
-				// use slug for api search
 
 				var channeltitle = state.title.replace('[subsection]','');
 
-				return html`
-					<div>
-						<h1>${channeltitle}</h1>
-						${state.contents.map(module.exports)}
-					</div>
-				`
+				// basically it looks like sometimes it doesnt return the content before loading here
+
+				console.log("subsection: ", state.contents)
+
+				if(state.contents){
+					return html`
+						<div>
+							<h1 id="${state.slug}">${channeltitle}</h1>
+							${state.contents.map(module.exports)}
+						</div>
+					`
+				}
 			}
 		}
 	}else if(state.class == "Link"){
