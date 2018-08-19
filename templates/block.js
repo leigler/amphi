@@ -1,6 +1,5 @@
 var html = require('choo/html')
 var rawhtml = require('choo/html/raw')
-//var subsection = require('./subsection.js')
 var marked = require('marked')
 
 //export module
